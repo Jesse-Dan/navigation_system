@@ -15,18 +15,13 @@ class Go {
   /// - `routeName`: The name of the route to navigate to.
   /// - `data`: Navigates back to the previous screen with provided data.
   /// - `arguments`: Optional route-specific data to pass when navigating.
-  Go(
-    this.context, {
-    this.routeName,
-    this.arguments,
-    this.data
-  });
+  Go(this.context, {this.routeName, this.arguments, this.data});
 
   /// Sets up a tap gesture recognizer for the [onTapRecognizeGesture] method.
   ///
   /// This method creates a tap gesture recognizer and attaches an onTap action to it.
   /// When the gesture is recognized, it navigates to the specified route with optional arguments.
-  void onTapRecognizeGesture() {
+  TapGestureRecognizer onTapRecognizeGesture() {
     void onTap() {
       if (routeName != null) {
         // Navigates to the specified route with optional arguments.
@@ -36,7 +31,11 @@ class Go {
     }
 
     // Attach the onTap action to the recognizer.
-    TapGestureRecognizer().onTap = onTap;
+// Create a TapGestureRecognizer and attach the onTap action to it.
+    TapGestureRecognizer gestureRecognizer = TapGestureRecognizer()
+      ..onTap = onTap;
+
+    return gestureRecognizer;
   }
 
   /// Pops the current route from the navigation stack.
@@ -96,8 +95,7 @@ class Go {
   ///
   /// If a valid [BuildContext] is provided, this method replaces the current route with the specified named route
   /// and passes optional route-specific arguments.
-  void replaceWithNamedRouteWithArgs(
-     ) {
+  void replaceWithNamedRouteWithArgs() {
     Navigator.pushReplacementNamed(
       context,
       routeName!,
@@ -144,8 +142,7 @@ class Go {
   ///
   /// If a valid [BuildContext] is provided, this method navigates to the specified named route,
   /// clearing all previous routes in the navigation stack.
-  void toAndClearAllReplacementNamedRoute(
-      ) {
+  void toAndClearAllReplacementNamedRoute() {
     Navigator.pushNamedAndRemoveUntil(
       context,
       routeName!,

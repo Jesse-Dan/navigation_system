@@ -1,6 +1,6 @@
 name: navigation_system
 description: A comprehensive Flutter Navigation System that provides a set of utilities for managing routes, passing arguments, and navigating through your application with ease.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/Jesse-Dan/navigation_system
 
 environment:
