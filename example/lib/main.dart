@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:navigation_system/go/go.dart';
 import 'package:navigation_system/navigation_system.dart';
 
+import 'back_with_data.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp( BackWithData());
 }
 
 /// The main application widget.

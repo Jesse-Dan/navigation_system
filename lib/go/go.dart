@@ -1,9 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
 import 'go_service.dart';
 
 /// A utility class for simplifying navigation in a Flutter app.
-class Go {
+class Go<T> {
   final String? routeName;
   final MyRouteArguments? arguments;
   final BuildContext context;
@@ -77,10 +78,27 @@ class Go {
     );
   }
 
+  /// Navigates to a named route and expects to receive data back.
+  ///
+  /// If a valid [routeName] is provided, this method navigates to the specified route and waits for data to be returned.
+  /// If [routeName] is `null`, it returns a default string message.
+  ///
+  /// Returns the result obtained from the navigated route or a default message if [routeName] is `null`.
+  Future<T?> toAndExpectData<T>() async {
+  if (routeName == null) {
+    throw Exception('Route name is null. Cannot navigate without a valid route.');
+  }
+  return await Navigator.pushNamed(context, routeName!, arguments: arguments?.arguments);
+}
+
+
   /// Navigates back to the previous screen with provided data.
   ///
-  /// If a valid [BuildContext] is provided, this method navigates back to the previous screen and passes the provided data.
-  void backWithData() {
+  /// If a valid [BuildContext] is provided, this method pops the current route and returns the provided [data] to the previous screen.
+  ///
+  /// Parameters:
+  ///   - [data]: The data to be returned to the previous screen.
+  void backWithData(T data)  {
     Navigator.pop(context, data);
   }
 
